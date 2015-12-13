@@ -1,0 +1,21 @@
+body{
+	min-width: 500px;
+	min-height: 600px;
+	overflow: hidden;
+}
+
+.btn{
+	margin-left: 40%;
+}
+
+footer.page-footer, .btn, .btn-large, nav{
+	background-color: #4099FF;	
+}
+
+.inner{
+	margin-left: 30%;
+}
+
+.inputfield{
+	margin-left: 15%;
+}
