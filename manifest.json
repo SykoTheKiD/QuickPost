@@ -1,0 +1,28 @@
+{
+ "name": "TextMe",
+ "version": "1.0",
+ "description": "Send the Web to your phone.",
+ "manifest_version": 2,
+ "browser_action": {
+   "default_title": "TextMe",
+   "default_icon": "icon.png",
+   "default_popup": "app.html" 
+ },
+ "permissions": [
+   "tabs",
+   "<all_urls>",
+   "activeTab"
+ ],
+ "icons": { "16": "icon.png",
+           "48": "icon.png",
+          "128": "icon.png" },
+
+ "content_scripts": [
+   {
+     "matches": ["<all_urls>"],
+     "js": ["js/listeners.js"],
+     "run_at": "document_start",
+     "all_frames": true
+   }
+ ]
+}
