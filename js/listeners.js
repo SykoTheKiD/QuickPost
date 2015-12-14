@@ -8,4 +8,3 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
   }else
   	sendResponse({data: text});
 });
-

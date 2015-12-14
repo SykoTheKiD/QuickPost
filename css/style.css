@@ -19,3 +19,7 @@ footer.page-footer, .btn, .btn-large, nav{
 .inputfield{
 	margin-left: 15%;
 }
+
+#submit_link_form{
+	visibility: hidden;
+}
