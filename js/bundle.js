@@ -1,11 +1,37 @@
 $(function() {
-    $('#paste').click(function() {
-        getText(function(text){
+    $('#paste').click(function(){
+    	        getText(function(text){
         	console.log(text);
         	document.getElementById("post_link").value = text;
         });
+    })
+});
+
+$(function() {
+    $('#submit_post').click(function(){
+    	submitPost();
     });
 });
+
+function submitPost(){
+	var title = document.getElementById("post_title").value;
+	var subreddit = document.getElementById("post_subreddit").value;
+	var link = document.getElementById("post_link").value;
+	console.log(link);
+	$.ajax({
+        type: "POST",
+        url: 'http://jaysyko.com/projects/QuickPost/quickpost.php',
+        data: {
+            post_title: title,
+            post_subreddit: subreddit,
+            post_link: link
+        },
+        success: function(response) {
+            console.log(response);
+            return;
+        }
+    });
+}
 
 function getText(callback) {
     chrome.tabs.query({
