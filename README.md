@@ -1,5 +1,5 @@
 # QuickPost #
-![QuickPost](https://raw.githubusercontent.com/SykoTheKiD/QuickPost/master/img/reddit.svg)
+![QuickPost](http://findicons.com/files/icons/2779/simple_icons/512/reddit_512_black.png)
 
 Quickly submit links to reddit without leaving the page.
 
