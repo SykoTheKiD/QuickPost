@@ -1,7 +1,7 @@
 # QuickPost #
-![QuickPost](http://findicons.com/files/icons/2779/simple_icons/512/reddit_512_black.png)
+<img src="http://findicons.com/files/icons/2779/simple_icons/512/reddit_512_black.png" height="300" width="300">
 
-Quickly submit links to reddit without leaving the page.
+## Quickly submit links to reddit without leaving the page.
 
 ## Dependencies
 Quick post uses the [Reddit PHP Wrapper](https://github.com/jcleblanc/reddit-php-sdk)
