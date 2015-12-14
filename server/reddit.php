@@ -133,6 +133,7 @@ class reddit{
         if ($link != null){ $postData .= "&url=" . urlencode($link); }
     
         $response = $this->runCurl($urlSubmit, $postData);
+        return $response;
         
         /*if ($response->jquery[18][3][0] == "that link has already been submitted"){
             return $response->jquery[18][3][0];

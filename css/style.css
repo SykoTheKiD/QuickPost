@@ -4,8 +4,8 @@ body{
 	overflow: hidden;
 }
 
-.btn{
-	margin-left: 40%;
+#submit_post{
+	margin-left: 2%;
 }
 
 footer.page-footer, .btn, .btn-large, nav{
@@ -22,4 +22,11 @@ footer.page-footer, .btn, .btn-large, nav{
 
 #submit_link_form{
 	visibility: hidden;
+	padding-bottom: 5%;
+}
+
+#post_response{
+	font-size: 130%;
+    padding-top: 5%;
+    padding-left: 16%;
 }

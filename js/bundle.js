@@ -2,6 +2,7 @@ $(function() {
     $('#paste').click(function(){
 			getText(function(text){
 			document.getElementById("post_link").value = text;
+			document.getElementById("link_label").innerHTML = "";
         });
     })
 });
@@ -16,7 +17,6 @@ function submitPost(){
 	var title = document.getElementById("post_title").value;
 	var subreddit = document.getElementById("post_subreddit").value;
 	var link = document.getElementById("post_link").value;
-	console.log(link);
 	$.ajax({
         type: "POST",
         url: 'http://jaysyko.com/projects/QuickPost/quickpost.php',
@@ -27,6 +27,10 @@ function submitPost(){
         },
         success: function(response) {
             console.log(response);
+            var reposnse_json = JSON.parse(response);
+            if (reposnse_json.response != null) {
+            	document.getElementById("post_response").innerHTML = reposnse_json.response;
+            };
             return;
         }
     });
@@ -61,7 +65,6 @@ function login(callback){
 	var username = null;
 	if (expiryDate != NaN && date < expiryDate){
 		username = localStorage.getItem('username');
-		console.log(username);
 		callback(username);
 	}else{
 		$.ajax({
@@ -74,7 +77,6 @@ function login(callback){
 	        		window.open("http://jaysyko.com/projects/QuickPost/quickpost.php");
 	        	}
 	        	username = reposnse_json.username;
-	        	console.log("API " + username);
     			localStorage.setItem('expiry_date', Date.now() + milisecsInAndHour);
     			localStorage.setItem('username', username);
     			callback(username);
@@ -84,6 +86,8 @@ function login(callback){
 }
 
 window.onload = login(function(username){
+	var PROFILE_LINK = "https://www.reddit.com/user/";
 	document.getElementById("submit_link_form").style.visibility = "visible";
+	document.getElementById("logged_in_status_reddit").href = PROFILE_LINK + username;
 	document.getElementById("logged_in_status_reddit").innerHTML = username;
 });
