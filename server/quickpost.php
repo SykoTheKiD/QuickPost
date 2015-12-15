@@ -21,4 +21,5 @@
 		"username" => $userData->name,
 		"response" => $post_response
 	);
+
 	echo(json_encode($response_array));

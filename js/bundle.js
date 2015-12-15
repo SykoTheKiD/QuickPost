@@ -19,7 +19,7 @@ function submitPost(){
 	var link = document.getElementById("post_link").value;
 	$.ajax({
         type: "POST",
-        url: 'http://jaysyko.com/projects/QuickPost/quickpost.php',
+        url: '//api.jaysyko.com/projects/QuickPost/post',
         data: {
             post_title: title,
             post_subreddit: subreddit,
@@ -69,14 +69,10 @@ function login(callback){
 	}else{
 		$.ajax({
 	        type: "GET",
-	        url: 'http://jaysyko.com/projects/QuickPost/quickpost.php',
+	        url: 'http://api.jaysyko.com/projects/QuickPost/login',
 	        success: function(response) {
-	        	try{
-	        		var reposnse_json = JSON.parse(response);
-	        	}catch(err){
-	        		window.open("http://jaysyko.com/projects/QuickPost/quickpost.php");
-	        	}
-	        	username = reposnse_json.username;
+                console.log(response);
+	        	username = response.username.name;
     			localStorage.setItem('expiry_date', Date.now() + milisecsInAndHour);
     			localStorage.setItem('username', username);
     			callback(username);
