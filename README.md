@@ -9,5 +9,5 @@ Quick post uses the [Reddit PHP Wrapper](https://github.com/jcleblanc/reddit-php
 ### How do I get set up? ###
 
 * Install .crx file found in `Build/` to Chrome
-* To Install go to <chrome://extensions> and drag and drop `TextMe.crx` file
+* To Install go to <chrome://extensions> and drag and drop the `QuickPost.crx` file
 * Accept permissions
