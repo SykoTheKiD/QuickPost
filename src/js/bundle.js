@@ -64,9 +64,9 @@ function login(callback){
 	var expiryDate = parseInt(localStorage.getItem('expiry_date'));
 	var username = null;
 	if (expiryDate != NaN && date < expiryDate){
-		username = localStorage.getItem('username');
-		callback(username);
-	}else{
+		// username = localStorage.getItem('username');
+		// callback(username);
+	// }else{
 		$.ajax({
 	        type: "GET",
 	        url: 'http://api.jaysyko.com/projects/QuickPost/login',
@@ -78,7 +78,7 @@ function login(callback){
     			callback(username);
 	        }
 	    });
-	}
+	// }
 }
 
 window.onload = login(function(username){
