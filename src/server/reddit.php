@@ -19,8 +19,21 @@ class reddit{
     *
     * Construct the class and simultaneously log a user in.
     * @link https://github.com/reddit/reddit/wiki/API%3A-login
+    * @param string $mode The auth mode to use, either oauth (default) or basic
     */
-    public function __construct(){
+    public function __construct($mode = 'oauth'){
+        if ($mode == 'oauth'){
+            self::init_oauth();
+        } else {
+            self::init_basic();
+        }
+    }
+    
+    public function init_basic(){
+        $this->apiHost = redditConfig::$ENDPOINT_STANDARD;
+    }
+    
+    public function init_oauth(){
         if(isset($_COOKIE['reddit_token'])){
             $token_info = explode(":", $_COOKIE['reddit_token']); 
             $this->token_type = $token_info[0];
@@ -31,9 +44,10 @@ class reddit{
                 $code = $_GET["code"];
                 
                 //construct POST object for access token fetch request
-                $postvals = sprintf("code=%s&redirect_uri=%s&grant_type=authorization_code",
+                $postvals = sprintf("code=%s&redirect_uri=%s&grant_type=authorization_code&client_id=%s",
                                     $code,
-                                    redditConfig::$ENDPOINT_OAUTH_REDIRECT);
+                                    redditConfig::$ENDPOINT_OAUTH_REDIRECT,
+                                    redditConfig::$CLIENT_ID);
                 
                 //get JSON access token object (with refresh_token parameter)
                 $token = self::runCurl(redditConfig::$ENDPOINT_OAUTH_TOKEN, $postvals, null, true);
@@ -56,7 +70,7 @@ class reddit{
                                    redditConfig::$SCOPES,
                                    $state);
                     
-                //forward user to PayPal auth page
+                //forward user to Reddit auth page
                 header("Location: $urlAuth");
             }
         }
@@ -66,10 +80,6 @@ class reddit{
         
         //set auth mode for requests
         $this->auth_mode = 'oauth';
-    }
-
-    public function getAuthToken(){
-        return $this->access_token;
     }
     
     /**
@@ -133,7 +143,6 @@ class reddit{
         if ($link != null){ $postData .= "&url=" . urlencode($link); }
     
         $response = $this->runCurl($urlSubmit, $postData);
-        return $response;
         
         /*if ($response->jquery[18][3][0] == "that link has already been submitted"){
             return $response->jquery[18][3][0];
