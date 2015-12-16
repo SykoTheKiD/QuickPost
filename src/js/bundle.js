@@ -16,19 +16,21 @@ $(function() {
 });
 
 function submitPost(){
-	var title = document.getElementById("post_title").value;
-	var subreddit = document.getElementById("post_subreddit").value;
-	var link = document.getElementById("post_link").value;
+	var TITLE = document.getElementById("post_title").value,
+	    SUBREDDIT = document.getElementById("post_subreddit").value,
+	    LINK = document.getElementById("post_link").value,
+      STATUS = document.getElementById("post_response");
+  STATUS.innerHTML = "Submitting Link to ".concat(subreddit).concat("...");
 	$.ajax({
         type: "GET",
         url: SYKO_API_REDDIT_URL,
         data: {
-            post_title: title,
-            post_subreddit: subreddit,
-            post_link: link
+            post_title: TITLE,
+            post_subreddit: SUBREDDIT,
+            post_link: LINK
         },
         success: function(response) {
-            document.getElementById("post_response").innerHTML = "Link Submitted to ".concat(subreddit);
+            STATUS.innerHTML = "Link Submitted to ".concat(subreddit);
         }
     });
 }
