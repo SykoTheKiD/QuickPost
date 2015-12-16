@@ -10,7 +10,9 @@ $(function() {
 });
 
 $(function() {
-    $('#submit_post').click(submitPost());
+    $('#submit_post').click(function(){
+      submitPost();
+    });
 });
 
 function submitPost(){
@@ -21,7 +23,6 @@ function submitPost(){
         type: "GET",
         url: SYKO_API_REDDIT_URL,
         data: {
-            type: "post"
             post_title: title,
             post_subreddit: subreddit,
             post_link: link
@@ -66,14 +67,15 @@ function login(callback){
 		$.ajax({
 	        type: "GET",
 	        url: SYKO_API_REDDIT_URL,
-          data:{
-            type: "getUser"
-          },
 	        success: function(response) {
-            username = response.name;
-            localStorage.setItem('expiry_date', DATE + MILISECS_IN_AN_HOUR);
-            localStorage.setItem('username', username);
-            callback(username);
+            if(typeof response=="object"){
+              username = response.name;
+              localStorage.setItem('expiry_date', DATE + MILISECS_IN_AN_HOUR);
+              localStorage.setItem('username', username);
+              callback(username);
+            }else{
+              window.open(SYKO_API_REDDIT_URL);
+            }
 	        }
 	    });
 	}
