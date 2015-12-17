@@ -11,3 +11,7 @@ Quick post uses the [Reddit PHP Wrapper](https://github.com/jcleblanc/reddit-php
 * Install .crx file found in `Build/` to Chrome		
 * To Install go to <chrome://extensions> and drag and drop the `QuickPost.crx` file		
 * Accept permissions
+
+## Developers
+Improvements are definitely possible and make a Pull Request if you can make any improvements
+A test subreddit is available to make posts at [r/QuickPostTests](https://www.reddit.com/r/QuickPostTests/)
