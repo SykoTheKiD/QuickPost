@@ -1,15 +1,6 @@
 var SYKO_API_REDDIT_URL = "https://api.jaysyko.com/projects/QuickPost/reddit";
 
 $(function() {
-    $('#paste').click(function(){
-			getText(function(text){
-			document.getElementById("post_link").value = text;
-			document.getElementById("link_label").innerHTML = "";
-        });
-    })
-});
-
-$(function() {
     $('#submit_post').click(function(){
       submitPost();
     });
@@ -20,7 +11,7 @@ function submitPost(){
 	    SUBREDDIT = document.getElementById("post_subreddit").value,
 	    LINK = document.getElementById("post_link").value,
       STATUS = document.getElementById("post_response");
-  STATUS.innerHTML = "Submitting Link to ".concat(subreddit).concat("...");
+  STATUS.innerHTML = "Submitting Link to ".concat(SUBREDDIT).concat("...");
 	$.ajax({
         type: "GET",
         url: SYKO_API_REDDIT_URL,
@@ -30,7 +21,11 @@ function submitPost(){
             post_link: LINK
         },
         success: function(response) {
-            STATUS.innerHTML = "Link Submitted to ".concat(subreddit);
+          if(typeof response=="object"){
+              STATUS.innerHTML = "Subreddit: ".concat(SUBREDDIT).concat(" was not found");
+            }else{
+              STATUS.innerHTML = "Link Submitted to ".concat(SUBREDDIT);
+            }
         }
     });
 }
@@ -83,9 +78,22 @@ function login(callback){
 	}
 }
 
-window.onload = login(function(username){
-	var REDDIT_PROFILE_LINK = "https://www.reddit.com/user/";
-	document.getElementById("submit_link_form").style.visibility = "visible";
-	document.getElementById("logged_in_status_reddit").href = REDDIT_PROFILE_LINK + username;
-	document.getElementById("logged_in_status_reddit").innerHTML = username;
-});
+function init(){
+  login(
+    function(username){
+      var REDDIT_PROFILE_LINK = "https://www.reddit.com/user/";
+      document.getElementById("submit_link_form").style.visibility = "visible";
+      document.getElementById("logged_in_status_reddit").href = REDDIT_PROFILE_LINK + username;
+      document.getElementById("logged_in_status_reddit").innerHTML = username;
+    }
+  );
+
+  getText(
+    function(text){
+      document.getElementById("post_link").value = text;
+      document.getElementById("link_label").innerHTML = "";
+    }
+  );
+}
+
+window.onload = init();
