@@ -8,8 +8,8 @@ Quick post uses the [Reddit PHP Wrapper](https://github.com/jcleblanc/reddit-php
 
 ### How do I get set up?
 
-* Install .crx file found in `Build/` to Chrome		
-* To Install go to <chrome://extensions> and drag and drop the `QuickPost.crx` file		
+* [Click here](https://jaysyko.com/projects/ProjectBuilds/QuickPost.crx) to download the extension
+* To Install go to **chrome://extensions** and drag and drop the `QuickPost.crx` file into the window
 * Accept permissions
 
 ## Developers
